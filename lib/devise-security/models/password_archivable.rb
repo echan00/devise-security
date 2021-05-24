@@ -12,7 +12,7 @@ module Devise
       include Devise::Models::DatabaseAuthenticatable
 
       included do
-        has_many :old_passwords, class_name: 'OldPassword', foreign_key: 'user_id', as: :password_archivable, dependent: :destroy
+        has_many :old_passwords, class_name: 'OldPassword', foreign_key: 'password_archivable_id', as: :password_archivable, dependent: :destroy
         before_update :archive_password, if: :will_save_change_to_encrypted_password?
         validate :validate_password_archive, if: :password_present?
       end
